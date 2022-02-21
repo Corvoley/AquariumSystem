@@ -6,13 +6,14 @@ public class MovementController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5;
     public float MoveSpeed => moveSpeed;
+
     private Rigidbody2D rb;
     Vector2 moveDirection;
     private SpriteRenderer sprite;
     float oldXpos;
     private bool isFacingRight;
     
-
+    
 
     private void Awake()
     {
@@ -33,8 +34,6 @@ public class MovementController : MonoBehaviour
         moveDirection = GetMovementInput();
         CheckMovingDirection();
         SpriteFlipDiretion();
-
-
     }
     public void MoveToPositionFast(Vector3 destination, float moveTime)
     {

@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class FishAI : MonoBehaviour
 {
+    private enum State
+    {
+        Roaming,
+        LookForFood,
+        ChaseFood,
+    }
+
     private Vector3 startPosition;
     private Vector3 roamPosition;
     private MovementController movement;
+    private Status status;
     [SerializeField] private SpriteRenderer aquariumSprite;
     [SerializeField] private Vector2 minDistMove, maxDistMove;
     [SerializeField] private float minTimeToMove = 1f;
     [SerializeField] private float maxTimeToMove = 10f;
+    private State state;
     private float timer;
     private float timeFromLastMove;
 
@@ -18,7 +27,9 @@ public class FishAI : MonoBehaviour
 
     private void Awake()
     {
+        status = GetComponent<Status>();
         movement = GetComponent<MovementController>();
+        state = State.Roaming;
         startPosition = transform.position;
     }
     private void Start()
@@ -27,9 +38,63 @@ public class FishAI : MonoBehaviour
     }
     private void Update()
     {
-        RoamingController();
+        StateMachine();
     }
 
+    private void StateMachine()
+    {
+        switch (state)
+        {
+            case State.Roaming:
+                RoamingController();
+                if (status.HungryPercent <= 0.3f)
+                {
+                    state = State.LookForFood;
+                }
+                break;
+
+            case State.LookForFood:
+
+                RoamingController();
+                status.GetClosestFood();
+                if (status.FoodInRange.Length > 0)
+                {
+                    state = State.ChaseFood;
+                }
+                else
+                {
+                    state = State.Roaming;
+                }
+
+                break;
+
+            case State.ChaseFood:
+                if (status.HungryPercent >= 0.8f)
+                {
+                    state = State.Roaming;
+                }
+                else
+                {
+                    ChaseFood();
+                }
+                
+                break;
+            default:
+                break;
+        }
+    }
+    private void ChaseFood()
+    {
+        if (status.GetClosestFood() == null)
+        {
+            state = State.LookForFood;
+        }
+        else
+        {
+            movement.MoveToPosSmoothStep(status.GetClosestFood().transform.position, movement.MoveSpeed, timeFromLastMove);
+        }
+
+    }
     private void RoamingController()
     {
         if (roamPosition.x < aquariumSprite.transform.position.x - aquariumSprite.bounds.extents.x
@@ -65,6 +130,7 @@ public class FishAI : MonoBehaviour
         */
         Debug.DrawLine(transform.position, roamPosition);
     }
+
     private Vector3 GetRoamingPos(float minX, float minY, float maxX, float maxY)
     {
         float posX = GetRandomDir().x * Random.Range(minX, maxX);
@@ -73,7 +139,7 @@ public class FishAI : MonoBehaviour
     }
     private Vector3 GetRandomDir()
     {
-        return new Vector3(GetValuePosOrNeg(),GetValuePosOrNeg());
+        return new Vector3(GetValuePosOrNeg(), GetValuePosOrNeg());
     }
     private float GetValuePosOrNeg()
     {
