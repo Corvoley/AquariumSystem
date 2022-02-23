@@ -5,14 +5,21 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
+    public event Action FoodPickupEvent;  
     [SerializeField] private float foodAmount = 5;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Fish"))
         {
-            collision.GetComponent<Status>().SetHungry(foodAmount);
+            if (collision.GetComponentInParent<FishAI>().StateAI == FishAI.State.ChaseFood)
+            {
+                FoodPickupEvent?.Invoke();
+                collision.GetComponentInParent<HungerSystem>().SetHunger(foodAmount);
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
+            
         }
     }
 }

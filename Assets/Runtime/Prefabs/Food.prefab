@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7137bb836847984599f4adeb9409b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodAmount: 1
 --- !u!50 &3789211689200594257
 Rigidbody2D:
   serializedVersion: 4
@@ -130,7 +131,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -1,83 +1,103 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class FishAI : MonoBehaviour
 {
-    private enum State
+    public enum State
     {
         Roaming,
         LookForFood,
         ChaseFood,
     }
 
-    private Vector3 startPosition;
-    private Vector3 roamPosition;
-    private MovementController movement;
-    private Status status;
+    [Header("Movement Parameters")]
     [SerializeField] private SpriteRenderer aquariumSprite;
     [SerializeField] private Vector2 minDistMove, maxDistMove;
     [SerializeField] private float minTimeToMove = 1f;
     [SerializeField] private float maxTimeToMove = 10f;
-    private State state;
+    [SerializeField] private float foodSearchRadius = 10;
+
+
+    #region AI Parameters
+    private Vector3 startPosition;
+    private Vector3 roamPosition;
+    private float startChaseTime;
+    Vector3 target;
+    private MovementController movement;
+    private HungerSystem status;
+    private VisionComponent vision;
+    [SerializeField] private Food foodType;
+    public State StateAI { get; private set; }
+
     private float timer;
     private float timeFromLastMove;
-
-
-
+    public Collider2D[] FoodInRange { get; private set; }
+    #endregion
     private void Awake()
     {
-        status = GetComponent<Status>();
+        foodType.FoodPickupEvent += OnFoodPickup;
+        vision = GetComponent<VisionComponent>();
+        status = GetComponent<HungerSystem>();
         movement = GetComponent<MovementController>();
-        state = State.Roaming;
+        StateAI = State.Roaming;
         startPosition = transform.position;
     }
     private void Start()
     {
         roamPosition = GetRoamingPos(minDistMove.x, minDistMove.y, maxDistMove.x, maxDistMove.y);
+
     }
     private void Update()
     {
         StateMachine();
     }
 
+    private void OnFoodPickup()
+    {
+        startChaseTime = Time.time;
+        timeFromLastMove = Time.time;
+    }
     private void StateMachine()
     {
-        switch (state)
+        switch (StateAI)
         {
             case State.Roaming:
-                RoamingController();
-                if (status.HungryPercent <= 0.3f)
+                Roaming();
+                if (status.HungerPercent <= 0.3f)
                 {
-                    state = State.LookForFood;
+                    StateAI = State.LookForFood;
                 }
                 break;
 
             case State.LookForFood:
 
-                RoamingController();
-                status.GetClosestFood();
-                if (status.FoodInRange.Length > 0)
+                Roaming();
+                if (GetClosestFood() != null)
                 {
-                    state = State.ChaseFood;
+                     
+                    startChaseTime = Time.time;
+                    target = GetClosestFood().transform.position;
+                    StateAI = State.ChaseFood;
+
                 }
                 else
                 {
-                    state = State.Roaming;
+                    StateAI = State.Roaming;
                 }
-
                 break;
 
             case State.ChaseFood:
-                if (status.HungryPercent >= 0.8f)
+                if (status.HungerPercent >= 0.8f)
                 {
-                    state = State.Roaming;
+                    StateAI = State.Roaming;
                 }
                 else
                 {
                     ChaseFood();
                 }
-                
+
                 break;
             default:
                 break;
@@ -85,17 +105,22 @@ public class FishAI : MonoBehaviour
     }
     private void ChaseFood()
     {
-        if (status.GetClosestFood() == null)
+        if (GetClosestFood() == null)
         {
-            state = State.LookForFood;
+            StateAI = State.LookForFood;
+            
         }
         else
-        {
-            movement.MoveToPosSmoothStep(status.GetClosestFood().transform.position, movement.MoveSpeed, timeFromLastMove);
+        {           
+            movement.MoveToFood(GetClosestFood().transform.position, movement.MoveSpeed, startChaseTime);
+            roamPosition = GetClosestFood().transform.position;
+
+
         }
 
+
     }
-    private void RoamingController()
+    private void Roaming()
     {
         if (roamPosition.x < aquariumSprite.transform.position.x - aquariumSprite.bounds.extents.x
             || roamPosition.x > aquariumSprite.transform.position.x + aquariumSprite.bounds.extents.x
@@ -107,8 +132,8 @@ public class FishAI : MonoBehaviour
         else
         {
 
-            //movement.MoveToPosition(roamPosition, movement.MoveSpeed, timeFromLastMove);
-            movement.MoveToPositionFast(roamPosition, movement.MoveSpeed);
+            movement.MoveToPosition(roamPosition, movement.MoveSpeed, timeFromLastMove);
+            //movement.MoveToPositionFast(roamPosition, movement.MoveSpeed);
             //movement.MoveToPosSmoothStep(roamPosition, movement.MoveSpeed, timeFromLastMove);
             //movement.MoveToPositionSlowing(roamPosition, movement.MoveSpeed, timeFromLastMove);
             startPosition = transform.position;
@@ -145,7 +170,29 @@ public class FishAI : MonoBehaviour
     {
         return Random.value < 0.5f ? -1 : 1;
     }
+    public Collider2D GetClosestFood()
+    {
+        FoodInRange = Physics2D.OverlapCircleAll(transform.position, foodSearchRadius, status.FoodLayer);
+        Collider2D bestTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+        foreach (Collider2D potentialTarget in FoodInRange)
+        {
+            if (vision.IsVisible(potentialTarget.gameObject))
+            {
+                Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
+                float dSqrToTarget = directionToTarget.sqrMagnitude;
+                if (dSqrToTarget < closestDistanceSqr)
+                {
+                    closestDistanceSqr = dSqrToTarget;
+                    bestTarget = potentialTarget;
+                }
+            }
 
+        }
+
+        return bestTarget;
+    }
 
 
 }
