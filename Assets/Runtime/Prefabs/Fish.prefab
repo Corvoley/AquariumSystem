@@ -172,7 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e495e56f088770418a2ca86550481df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 2
+  rb: {fileID: 0}
+  characterFacing: {fileID: 0}
 --- !u!114 &1612933346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,8 +192,8 @@ MonoBehaviour:
   maxDistMove: {x: 15, y: 3}
   minTimeToMove: 1
   maxTimeToMove: 5
-  foodSearchRadius: 10
-  otherObject: {fileID: 0}
+  foodSearchRadius: 12
+  foodType: {fileID: 3789211689200594262, guid: 1741fa7aebf8c484a992af59565f4e3d, type: 3}
 --- !u!114 &135523419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +211,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   hunger: 0
-  hungerMax: 100
+  hungerMax: 5
 --- !u!114 &2053207218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,8 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3578bc042622814418f06afacf67f815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 12.49
-  visionAngle: 37.3
+  visionRange: 12
+  visionAngle: 60
 --- !u!114 &2053207219
 MonoBehaviour:
   m_ObjectHideFlags: 0

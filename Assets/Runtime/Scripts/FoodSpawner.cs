@@ -11,7 +11,6 @@ public class FoodSpawner : MonoBehaviour
     {
         StartCoroutine(SpawnFood());
     }
-
     private IEnumerator SpawnFood()
     {
         while (true)
@@ -20,17 +19,12 @@ public class FoodSpawner : MonoBehaviour
             yield return new WaitForSeconds(timeToSpawn);
         }
     }
-    
-    
-    
     private Vector3 GetRandomSpawnPos(Vector3 area)
     {
         float posX = Random.Range(-area.x /2, area.x /2);
         float posY = Random.Range(-area.y /2, area.y /2);
         return new Vector3(posX, posY, 0);
     }
-
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(transform.position, spawnArea);

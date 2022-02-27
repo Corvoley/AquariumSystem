@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HungerSystem : MonoBehaviour
 {
-    [SerializeField] private Food foodType;
+    [SerializeField] private GameObject food;
+    
     [SerializeField] private LayerMask foodLayer;
     public LayerMask FoodLayer => foodLayer;
 
@@ -14,6 +15,7 @@ public class HungerSystem : MonoBehaviour
 
     private void Start()
     {
+        
         hunger = hungerMax;
     }
     private void Update()
@@ -32,7 +34,10 @@ public class HungerSystem : MonoBehaviour
             hunger -= Time.deltaTime / 18 ;           
         }
     }
-    
+    public void OnFoodCollision(float foodValue)
+    {
+        SetHunger(foodValue);   
+    }
 
 
 }

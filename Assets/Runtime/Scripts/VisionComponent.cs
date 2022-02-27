@@ -15,6 +15,7 @@ public class VisionComponent : MonoBehaviour
 
     public bool IsVisible(GameObject target)
     {
+
         if (target == null)
         {
             return false;
@@ -43,7 +44,7 @@ public class VisionComponent : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, visionRange);
+        //Gizmos.DrawWireSphere(transform.position, visionRange);
 
         Vector3 visionDirection = GetVisionDirection();
         Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, visionAngle / 2) * visionDirection * visionRange);
