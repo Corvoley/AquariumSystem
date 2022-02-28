@@ -32,7 +32,8 @@ public class FishAI : MonoBehaviour
 
     private float timer;
     private float timeFromLastMove;
-    public Collider2D[] FoodInRange { get; private set; }
+    private Collider2D[] foodInRange = new Collider2D[20];
+    private List<Food> foodList = new List<Food>();
     #endregion
     private void Awake()
     {
@@ -56,6 +57,7 @@ public class FishAI : MonoBehaviour
     {
         startChaseTime = Time.time;
         timeFromLastMove = Time.time;
+        foodList.Clear();
     }
     #region State Machine Functions
     private void StateMachine()
@@ -117,7 +119,7 @@ public class FishAI : MonoBehaviour
     {
         if (GetClosestFood() == null)
         {
-            StateAI = State.LookForFood;
+            StateAI = State.LookForFood;            
         }
         else
         {
@@ -172,14 +174,27 @@ public class FishAI : MonoBehaviour
     {
         return Random.value < 0.5f ? -1 : 1;
     }
-    public Collider2D GetClosestFood()
+    public Food GetClosestFood()
     {
-        FoodInRange = Physics2D.OverlapCircleAll(transform.position, foodSearchRadius, hunger.FoodLayer);
-        Collider2D bestTarget = null;
+        int foodCount = Physics2D.OverlapCircleNonAlloc(transform.position, foodSearchRadius, foodInRange,hunger.FoodLayer);
+        Food bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
+        for (int i = 0; i < foodCount; i++)
+        {
+            for (int n = 0; n < hunger.foodType.Length; n++)
+            {
+                Food food = foodInRange[i].GetComponent<Food>();
+                if (food != null && !foodList.Contains(food) && hunger.foodType[n] == food.foodType)
+                {
+
+                    foodList.Add(food);
+
+                }
+            }
+        }
         
-        foreach (Collider2D potentialTarget in FoodInRange)
+        foreach (Food potentialTarget in foodList)
         {
             if (vision.IsVisible(potentialTarget.gameObject))
             {

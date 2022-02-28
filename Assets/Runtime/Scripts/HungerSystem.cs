@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HungerSystem : MonoBehaviour
 {
-    [SerializeField] private GameObject food;
+    [SerializeField] public FoodType[] foodType;
     
     [SerializeField] private LayerMask foodLayer;
     public LayerMask FoodLayer => foodLayer;
