@@ -119,7 +119,7 @@ public class FishAI : MonoBehaviour
     {
         if (GetClosestFood() == null)
         {
-            StateAI = State.LookForFood;            
+            StateAI = State.LookForFood;
         }
         else
         {
@@ -176,7 +176,7 @@ public class FishAI : MonoBehaviour
     }
     public Food GetClosestFood()
     {
-        int foodCount = Physics2D.OverlapCircleNonAlloc(transform.position, foodSearchRadius, foodInRange,hunger.FoodLayer);
+        int foodCount = Physics2D.OverlapCircleNonAlloc(transform.position, foodSearchRadius, foodInRange, hunger.FoodLayer);
         Food bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
@@ -187,13 +187,11 @@ public class FishAI : MonoBehaviour
                 Food food = foodInRange[i].GetComponent<Food>();
                 if (food != null && !foodList.Contains(food) && hunger.foodType[n] == food.foodType)
                 {
-
                     foodList.Add(food);
-
                 }
             }
         }
-        
+
         foreach (Food potentialTarget in foodList)
         {
             if (vision.IsVisible(potentialTarget.gameObject))
@@ -206,9 +204,8 @@ public class FishAI : MonoBehaviour
                     bestTarget = potentialTarget;
                 }
             }
-            
         }
-
+        foodList.Clear();
         return bestTarget;
 
 

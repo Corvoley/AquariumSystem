@@ -17,7 +17,7 @@ public class HungerSystem : MonoBehaviour
     private void Start()
     {
         
-        hunger = hungerMax;
+        hunger = 0;
     }
     private void Update()
     {

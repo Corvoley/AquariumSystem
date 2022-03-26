@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodType: 0
-  foodValue: 5
+  foodValue: 1
 --- !u!50 &3789211689200594257
 Rigidbody2D:
   serializedVersion: 4

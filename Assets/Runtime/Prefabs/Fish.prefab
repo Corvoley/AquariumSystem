@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 135523419}
   - component: {fileID: 2053207218}
   - component: {fileID: 2053207219}
+  - component: {fileID: 849479850}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Fish
@@ -147,7 +148,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7426357260388553437}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -187,13 +188,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c25cf4854ffc641b2e2f11af0183f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aquariumSprite: {fileID: 0}
+  allowedMoveSprite: {fileID: 0}
   minDistMove: {x: 5, y: 1}
   maxDistMove: {x: 15, y: 3}
   minTimeToMove: 1
   maxTimeToMove: 5
   foodSearchRadius: 12
-  foodType: {fileID: 3789211689200594262, guid: 1741fa7aebf8c484a992af59565f4e3d, type: 3}
+  startChaseTime: 0
 --- !u!114 &135523419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fe41ab6d3193e4680aa4efc04d05cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: {fileID: 3789211689200594262, guid: 1741fa7aebf8c484a992af59565f4e3d, type: 3}
+  foodType: 00000000
   foodLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -239,3 +240,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishMouth: {fileID: 1613368680}
+--- !u!114 &849479850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426357260388553437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818d81a1eea25294f8430eee5c3f1f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
