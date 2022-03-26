@@ -56,8 +56,7 @@ public class FishAI : MonoBehaviour
     public void OnFoodCollision()
     {
         startChaseTime = Time.time;
-        timeFromLastMove = Time.time;
-        foodList.Clear();
+        timeFromLastMove = Time.time;        
     }
     #region State Machine Functions
     private void StateMachine()
@@ -174,23 +173,14 @@ public class FishAI : MonoBehaviour
     {
         return Random.value < 0.5f ? -1 : 1;
     }
-    public Food GetClosestFood()
+    private Food GetClosestFood()
     {
         int foodCount = Physics2D.OverlapCircleNonAlloc(transform.position, foodSearchRadius, foodInRange, hunger.FoodLayer);
+        CheckIfIsFoodType(foodCount);
         Food bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
-        for (int i = 0; i < foodCount; i++)
-        {
-            for (int n = 0; n < hunger.foodType.Length; n++)
-            {
-                Food food = foodInRange[i].GetComponent<Food>();
-                if (food != null && !foodList.Contains(food) && hunger.foodType[n] == food.foodType)
-                {
-                    foodList.Add(food);
-                }
-            }
-        }
+        
 
         foreach (Food potentialTarget in foodList)
         {
@@ -207,9 +197,20 @@ public class FishAI : MonoBehaviour
         }
         foodList.Clear();
         return bestTarget;
-
-
-
+    }
+    private void CheckIfIsFoodType(int foodCount)
+    {
+        for (int i = 0; i < foodCount; i++)
+        {
+            for (int n = 0; n < hunger.foodType.Count; n++)
+            {
+                Food food = foodInRange[i].GetComponent<Food>();
+                if (food != null && !foodList.Contains(food) && hunger.foodType[n] == food.foodType)
+                {
+                    foodList.Add(food);
+                }
+            }
+        }
     }
 
     //code to chase food using coroutine instead of update

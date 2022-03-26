@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HungerSystem : MonoBehaviour
 {
-    [SerializeField] public FoodType[] foodType;
+    [SerializeField] public List<FoodType> foodType;
     
     [SerializeField] private LayerMask foodLayer;
     public LayerMask FoodLayer => foodLayer;
