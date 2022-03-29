@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9168b2e5efb147418554ea799670056, type: 3}
+  m_Name: KelpFoodStagesParameters
+  m_EditorClassIdentifier: 
+  <foodInitialAmount>k__BackingField: 5
+  <foodMaxAmount>k__BackingField: 30
+  <foodPrefab>k__BackingField: {fileID: 3789211689200594259, guid: 1741fa7aebf8c484a992af59565f4e3d, type: 3}
+  <foodStages>k__BackingField:
+  - <foodStageSprite>k__BackingField: {fileID: 21300000, guid: 9050934e48277bb43b1982d3b1230840, type: 3}
+    <foodPositions>k__BackingField:
+    - {x: -0.98, y: 1.23, z: 0}
+    - {x: 0.6, y: 2.21, z: 0}
+    - {x: -1.15, y: 2.93, z: 0}
+    <minFoodAmount>k__BackingField: 0
+  - <foodStageSprite>k__BackingField: {fileID: 21300000, guid: 0ade2ef6cdbfe824387a92d8289d1fb8, type: 3}
+    <foodPositions>k__BackingField:
+    - {x: -2.17, y: 2.63, z: 0}
+    - {x: 1.33, y: 2.49, z: 0}
+    - {x: -1.96, y: 4.39, z: 0}
+    - {x: 1.03, y: 3.76, z: 0}
+    <minFoodAmount>k__BackingField: 8
+  - <foodStageSprite>k__BackingField: {fileID: 21300000, guid: 2620606be27cdba43ac71730f6a8e3f8, type: 3}
+    <foodPositions>k__BackingField:
+    - {x: -1.18, y: 2.06, z: 0}
+    - {x: 2.06, y: 1.92, z: 0}
+    - {x: -2.13, y: 4.04, z: 0}
+    - {x: 1.98, y: 3.91, z: 0}
+    - {x: 0.73, y: 5.77, z: 0}
+    - {x: -2.81, y: 5.88, z: 0}
+    <minFoodAmount>k__BackingField: 15
+  - <foodStageSprite>k__BackingField: {fileID: 21300000, guid: 6fb164e24edc95e43a4cd115de3e33f8, type: 3}
+    <foodPositions>k__BackingField:
+    - {x: 2.4, y: 2.87, z: 0}
+    - {x: -2.43, y: 1.78, z: 0}
+    - {x: -2.84, y: 3.68, z: 0}
+    - {x: -2.84, y: 6, z: 0}
+    - {x: 1.65, y: 5.11, z: 0}
+    - {x: 1.28, y: 6.71, z: 0}
+    - {x: -3.01, y: 7.53, z: 0}
+    <minFoodAmount>k__BackingField: 20
+  - <foodStageSprite>k__BackingField: {fileID: 21300000, guid: ce73559aa6a5aec4aa0729239fbdf548, type: 3}
+    <foodPositions>k__BackingField:
+    - {x: -2.79, y: 3.28, z: 0}
+    - {x: 2.49, y: 3.63, z: 0}
+    - {x: -2.4, y: 4.43, z: 0}
+    - {x: 2.28, y: 5.12, z: 0}
+    - {x: -2.8, y: 6.92, z: 0}
+    - {x: 2.24, y: 7.27, z: 0}
+    - {x: -2.87, y: 8.39, z: 0}
+    - {x: 1.66, y: 8.39, z: 0}
+    - {x: 0.39, y: 9.88, z: 0}
+    - {x: -2.34, y: 9.88, z: 0}
+    <minFoodAmount>k__BackingField: 25

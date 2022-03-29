@@ -227,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visionRange: 12
   visionAngle: 60
+  visionPosition: {fileID: 1613368682}
 --- !u!114 &2053207219
 MonoBehaviour:
   m_ObjectHideFlags: 0

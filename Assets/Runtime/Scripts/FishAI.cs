@@ -118,12 +118,12 @@ public class FishAI : MonoBehaviour
     {
         if (GetClosestFood() == null)
         {
-            StateAI = State.LookForFood;
+            StateAI = State.Roaming;
         }
         else
         {
             movement.MoveToPosition(GetClosestFood().transform.position, movement.MoveSpeed, startChaseTime, LerpType.SmoothStep);
-            roamPosition = GetClosestFood().transform.position;
+            roamPosition = GetRoamingPos(minDistMove.x, minDistMove.y, maxDistMove.x, maxDistMove.y);
 
         }
     }

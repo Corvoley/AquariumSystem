@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
+    [SerializeField] private bool canSpawn;
     [SerializeField] private Vector3 spawnArea = new Vector3(5,5,5);
     [SerializeField] private GameObject foodPrefab;
     [SerializeField] private float timeToSpawn = 1f;
@@ -12,10 +13,13 @@ public class FoodSpawner : MonoBehaviour
         StartCoroutine(SpawnFood());
     }
     private IEnumerator SpawnFood()
-    {
+    {        
         while (true)
         {
-            Instantiate(foodPrefab, GetRandomSpawnPos(spawnArea), Quaternion.identity, transform);
+            if (canSpawn)
+            {
+                Instantiate(foodPrefab, GetRandomSpawnPos(spawnArea), Quaternion.identity, transform);               
+            }
             yield return new WaitForSeconds(timeToSpawn);
         }
     }
