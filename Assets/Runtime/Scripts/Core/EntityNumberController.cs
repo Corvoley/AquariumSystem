@@ -19,10 +19,7 @@ public class EntityNumberController : MonoBehaviour
         else
         {
             foodCountDict[name]++;
-        }
-        foreach (var item in foodCountDict)
-            Debug.Log(item.Key);
-        Debug.Log(foodCountDict[name]);
+        }        
     }
     public static void RemoveFoodCount(FoodParameters name)
     {
@@ -33,10 +30,7 @@ public class EntityNumberController : MonoBehaviour
         else
         {
             foodCountDict.Remove(name);
-        }
-        foreach (var item in foodCountDict)
-            Debug.Log(item.Key);
-        Debug.Log(foodCountDict[name]);
+        }        
     }
     public static void AddFishCount(FishParameters name)
     {
@@ -47,10 +41,7 @@ public class EntityNumberController : MonoBehaviour
         else
         {
             fishCountDict[name]++;
-        }
-        foreach (var item in fishCountDict)
-            Debug.Log(item.Key);
-        Debug.Log(fishCountDict[name]);
+        }        
     }
     public static void RemoveFishCount(FishParameters name)
     {
@@ -62,9 +53,7 @@ public class EntityNumberController : MonoBehaviour
         {
             fishCountDict.Remove(name);
         }
-        foreach (var item in fishCountDict)
-            Debug.Log(item.Key);
-        Debug.Log(fishCountDict[name]);
+        
     }
 
 
@@ -77,10 +66,7 @@ public class EntityNumberController : MonoBehaviour
         else
         {
             dictionary[name]++;
-        }
-        foreach (var item in dictionary)
-            Debug.Log(item.Key);
-        Debug.Log(dictionary[name]);
+        }        
     }
     private static void RemoveCount(ScriptableObject name, Dictionary<ScriptableObject, int> dictionary)
     {
@@ -91,10 +77,7 @@ public class EntityNumberController : MonoBehaviour
         else
         {
             dictionary.Remove(name);
-        }
-        foreach (var item in dictionary)
-            Debug.Log(item.Key);
-        Debug.Log(dictionary[name]);
+        }        
     }
     
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[RequireComponent(typeof(HungerSystem),typeof(VisionComponent),typeof(MovementController))]
 public class FishAI : MonoBehaviour
 {
     public enum State
@@ -38,8 +39,7 @@ public class FishAI : MonoBehaviour
 
     [SerializeField] private FishParameters fishParameters;
     private void Awake()
-    {
-        EntityNumberController.AddFishCount(fishParameters);
+    {        
         hunger = GetComponent<HungerSystem>();
         movement = GetComponent<MovementController>();
         vision = GetComponent<VisionComponent>();
@@ -134,10 +134,7 @@ public class FishAI : MonoBehaviour
     }
     private void Roaming()
     {
-        if (roamPosition.x < allowedMoveSprite.transform.position.x - allowedMoveSprite.bounds.extents.x
-            || roamPosition.x > allowedMoveSprite.transform.position.x + allowedMoveSprite.bounds.extents.x
-            || roamPosition.y < allowedMoveSprite.transform.position.y - allowedMoveSprite.bounds.extents.y
-            || roamPosition.y > allowedMoveSprite.transform.position.y + allowedMoveSprite.bounds.extents.y)
+        if (!allowedMoveSprite.bounds.Contains(roamPosition))
         {
             roamPosition = GetRoamingPos(minDistMove.x, minDistMove.y, maxDistMove.x, maxDistMove.y);
         }

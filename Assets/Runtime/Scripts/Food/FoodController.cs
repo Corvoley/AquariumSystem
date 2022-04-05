@@ -15,8 +15,7 @@ public class FoodController : MonoBehaviour
     [SerializeField] private List<GameObject> activeFoodPrefabList = new List<GameObject>();
 
     private void Start()
-    {
-        EntityNumberController.AddFoodCount(foodParameters);        
+    {        
         InstantiateAndDisableFood();
         currentFoodAmount = foodParameters.foodInitialAmount;
     }    
@@ -132,7 +131,7 @@ public class FoodController : MonoBehaviour
         {
             if (foodPos != null)
             {
-                //Gizmos.DrawWireSphere(transform.position + foodPos, 0.2f);
+                Gizmos.DrawWireSphere(transform.position + foodPos, 0.2f);
             }
 
         }

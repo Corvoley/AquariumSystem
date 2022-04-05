@@ -15,32 +15,7 @@ public class OxygenSystem : MonoBehaviour
     }
     public void OxygenController()
     {
-        if (oxygen < oxygenMax)
-        {
-            oxygen += (PlantProduction() - FishConsume()) * Time.deltaTime;
-        }        
-    }
-
-    private float PlantProduction()
-    {
-        float totalProduction = 0;
-        foreach (var plant in EntityNumberController.FoodCountDict)
-        {            
-            totalProduction += plant.Value * plant.Key.oxygenProdValue;
-        }
-        return totalProduction;
-    }
-    private float FishConsume()
-    {
-        float totalConsume = 0;
-        foreach (var fish in EntityNumberController.FishCountDict)
-        {
-            totalConsume += fish.Value * fish.Key.oxygenConsumeValue;
-        }
-        return totalConsume;
-    }
-
-
-
-
+        oxygen += (OxygenProducer.totalOxygenProductionAmount - OxygenConsumer.totalOxygenConsumptionAmount) * Time.deltaTime;        
+        oxygen = Mathf.Clamp(oxygen, 0, oxygenMax);
+    } 
 }

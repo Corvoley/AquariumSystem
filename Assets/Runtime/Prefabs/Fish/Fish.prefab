@@ -59,12 +59,13 @@ GameObject:
   - component: {fileID: 8522818230623705461}
   - component: {fileID: 7993124990039697216}
   - component: {fileID: 1615580596143768951}
-  - component: {fileID: 203694271182203037}
   - component: {fileID: 1612933346}
+  - component: {fileID: 203694271182203037}
   - component: {fileID: 135523419}
   - component: {fileID: 2053207218}
   - component: {fileID: 2053207219}
   - component: {fileID: 849479850}
+  - component: {fileID: -8917057867173458}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Fish
@@ -80,7 +81,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7426357260388553437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -161,6 +162,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1612933346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426357260388553437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c25cf4854ffc641b2e2f11af0183f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowedMoveSprite: {fileID: 2582778876558476719, guid: c4351e7b0380acf4b96312231b278a11, type: 3}
+  minDistMove: {x: 5, y: 1}
+  maxDistMove: {x: 15, y: 3}
+  minTimeToMove: 1
+  maxTimeToMove: 5
+  foodSearchRadius: 12
+  startChaseTime: 0
+  fishParameters: {fileID: 11400000, guid: cc138951ba3610a4b8bbdbef959d5112, type: 2}
 --- !u!114 &203694271182203037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,25 +197,6 @@ MonoBehaviour:
   moveSpeed: 2
   rb: {fileID: 0}
   characterFacing: {fileID: 0}
---- !u!114 &1612933346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7426357260388553437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c25cf4854ffc641b2e2f11af0183f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allowedMoveSprite: {fileID: 0}
-  minDistMove: {x: 5, y: 1}
-  maxDistMove: {x: 15, y: 3}
-  minTimeToMove: 1
-  maxTimeToMove: 5
-  foodSearchRadius: 12
-  startChaseTime: 0
 --- !u!114 &135523419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,3 +255,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818d81a1eea25294f8430eee5c3f1f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8917057867173458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426357260388553437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea8433e7228c2b4aae7fdae33b7fdcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oxygenAmount: 2
