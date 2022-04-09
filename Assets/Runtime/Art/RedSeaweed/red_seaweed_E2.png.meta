@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6f716343f02ba564597550aa28288254
+guid: cf51d9f82f5f07c4d8f9869dd910231f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,9 +36,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -47,8 +47,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 275, y: 0, z: 229, w: 0}
+  spritePixelsToUnits: 220
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -114,84 +114,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: kisspng-computer-icons-encapsulated-postscript-font-surgeon-5adb3a56143ee6.3650440415243167580829_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 171
-        height: 512
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4347dde27a2fe514b94c953dbb03bc97
-      internalID: -938996809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kisspng-computer-icons-encapsulated-postscript-font-surgeon-5adb3a56143ee6.3650440415243167580829_1
-      rect:
-        serializedVersion: 2
-        x: 171
-        y: 0
-        width: 171
-        height: 512
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7ced42a6eb4b544aa133351f7154340
-      internalID: 1733385244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kisspng-computer-icons-encapsulated-postscript-font-surgeon-5adb3a56143ee6.3650440415243167580829_2
-      rect:
-        serializedVersion: 2
-        x: 342
-        y: 0
-        width: 170
-        height: 512
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae4fbbf043758134f842606aebf21157
-      internalID: -1338208733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      kisspng-computer-icons-encapsulated-postscript-font-surgeon-5adb3a56143ee6.3650440415243167580829_1: 1733385244
-      kisspng-computer-icons-encapsulated-postscript-font-surgeon-5adb3a56143ee6.3650440415243167580829_0: -938996809
-      kisspng-computer-icons-encapsulated-postscript-font-surgeon-5adb3a56143ee6.3650440415243167580829_2: -1338208733
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

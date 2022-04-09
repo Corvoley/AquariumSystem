@@ -10,14 +10,10 @@ public class OxygenConsumer : MonoBehaviour
 
     private void Awake()
     {
-        totalOxygenConsumptionAmount += oxygenAmount;
-        Debug.Log(totalOxygenConsumptionAmount);
+        totalOxygenConsumptionAmount += oxygenAmount;        
     }
     private void OnDestroy()
     {
-        totalOxygenConsumptionAmount -= oxygenAmount;
-        Debug.Log(totalOxygenConsumptionAmount);
+        totalOxygenConsumptionAmount -= oxygenAmount;       
     }
-
-
 }

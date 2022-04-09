@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(HungerSystem),typeof(VisionComponent),typeof(MovementController))]
-public class FishAI : MonoBehaviour
+public class FishController : MonoBehaviour
 {
     public enum State
     {
@@ -19,6 +19,10 @@ public class FishAI : MonoBehaviour
     [SerializeField] private float minTimeToMove = 1f;
     [SerializeField] private float maxTimeToMove = 10f;
     [SerializeField] private float foodSearchRadius = 10;
+    private OxygenSystem oxygenSystem;
+
+    private Health health;
+    private SpriteRenderer fishSprite;
 
 
     #region AI Parameters
@@ -36,24 +40,27 @@ public class FishAI : MonoBehaviour
     private Collider2D[] foodInRange = new Collider2D[20];
     private List<Food> foodList = new List<Food>();
     #endregion
-
-    [SerializeField] private FishParameters fishParameters;
+    
     private void Awake()
-    {        
+    {
+        oxygenSystem = FindObjectOfType<OxygenSystem>();
+        health = GetComponent<Health>();        
         hunger = GetComponent<HungerSystem>();
         movement = GetComponent<MovementController>();
         vision = GetComponent<VisionComponent>();
+        fishSprite = GetComponent<SpriteRenderer>();
+        health.OnDied += OnFishDied;
+
         StateAI = State.Roaming;
         startPosition = transform.position;
     }
     private void Start()
     {
-
         roamPosition = GetRoamingPos(minDistMove.x, minDistMove.y, maxDistMove.x, maxDistMove.y);
-
     }
     private void Update()
-    {
+    {        
+        HealthCheck();
         hunger.HungerController();
         StateMachine();
     }
@@ -143,7 +150,6 @@ public class FishAI : MonoBehaviour
             movement.MoveToPosition(roamPosition, movement.MoveSpeed, timeFromLastMove, LerpType.Fast);
             startPosition = transform.position;
         }
-
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
@@ -160,7 +166,7 @@ public class FishAI : MonoBehaviour
         */
         Debug.DrawLine(transform.position, roamPosition);
     }
-
+    
     private Vector3 GetRoamingPos(float minX, float minY, float maxX, float maxY)
     {
         float posX = GetRandomDir().x * Random.Range(minX, maxX);
@@ -215,6 +221,42 @@ public class FishAI : MonoBehaviour
         }
     }
 
+    private void HealthCheck()
+    {
+        if ((GetOxygenDamageAmount() + GetHungerDamageAmount()) > 0)
+        {
+            health.TakeDamage((GetOxygenDamageAmount() + GetHungerDamageAmount()) * Time.deltaTime);
+        }
+        else
+        {
+            health.HealDamage(0.05f * Time.deltaTime);
+        }
+    }
+    private float GetOxygenDamageAmount()
+    {
+        if (oxygenSystem.OxygenPercent <= 0)
+        {
+            return 0.2f;
+        }
+        else
+            return 0;
+    }
+    private float GetHungerDamageAmount()
+    {
+        if (hunger.HungerPercent <= 0)
+        {
+            return 0.2f;
+        }
+        else
+            return 0;
+    }
+    private void OnFishDied()
+    {
+        enabled = false;
+        fishSprite.flipY = true;
+        health.OnDied -= OnFishDied;
+        Destroy(gameObject, 2f);
+    }
     //code to chase food using coroutine instead of update
     /*CoroutineTest
     StartCoroutine(MoveToFood(GetClosestFood().transform.position, movement.MoveSpeed));

@@ -20,7 +20,7 @@ public class Food : MonoBehaviour, IFishCollisionReact
 
     public virtual void ReactToFishCollision(in FishCollisionInfo collisionInfo)
     {       
-        if (collisionInfo.FishAI.StateAI == FishAI.State.ChaseFood && collisionInfo.HungerSystem.foodType.Contains(foodType))
+        if (collisionInfo.FishAI.StateAI == FishController.State.ChaseFood && collisionInfo.HungerSystem.foodType.Contains(foodType))
         {
             gameObject.SetActive(false);
             foodController.ReduceFoodAmount(foodValue);

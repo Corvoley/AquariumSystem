@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <foodInitialAmount>k__BackingField: 5
   <foodMaxAmount>k__BackingField: 30
-  <foodPrefab>k__BackingField: {fileID: 3789211689200594259, guid: 1741fa7aebf8c484a992af59565f4e3d, type: 3}
-  <oxygenProdValue>k__BackingField: 5
+  <foodPrefab>k__BackingField: {fileID: 4818462690511716658, guid: 738df0ce9166f304997480f01e625e27, type: 3}
+  <oxygenProdValue>k__BackingField: 0
   <foodStages>k__BackingField:
   - <foodStageSprite>k__BackingField: {fileID: 21300000, guid: 5869e5daa6ad3b2499a52022dca28711, type: 3}
     <foodPositions>k__BackingField:

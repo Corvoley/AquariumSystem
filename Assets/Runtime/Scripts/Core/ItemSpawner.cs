@@ -10,7 +10,8 @@ public class ItemSpawner : MonoBehaviour
     private GameObject itemToSpawn;
     private Camera cam;
     private SpriteRenderer itemIconSprite;
-    [SerializeField] private SpriteRenderer allowedAreaToSpawnItem;
+    [SerializeField] private SpriteRenderer allowedAreaToSpawnFish;
+    [SerializeField] private SpriteRenderer allowedAreaToSpawnPlant;
     private Vector3 iconOffSet;
 
 
@@ -23,10 +24,22 @@ public class ItemSpawner : MonoBehaviour
     void Update()
     {
         ItemIconView();
-        if (Input.GetMouseButtonDown(0) && allowedAreaToSpawnItem.bounds.Contains(returnMousePositionOnWorldPosition()) && itemToSpawn != null && !IsPointerOverUIObject())
+        if (Input.GetMouseButtonDown(0) && itemToSpawn != null && !IsPointerOverUIObject())
         {
-            Instantiate(itemToSpawn, returnMousePositionOnWorldPosition(), Quaternion.identity, itemParent);
+            if (itemToSpawn.GetComponent<FoodController>() && allowedAreaToSpawnPlant.bounds.Contains(returnMousePositionOnWorldPosition()))
+            {
+                Instantiate(itemToSpawn, returnMousePositionOnWorldPosition(), Quaternion.identity, itemParent);
+            }
+            else if (itemToSpawn.GetComponent<FishController>() && allowedAreaToSpawnFish.bounds.Contains(returnMousePositionOnWorldPosition()))
+            {
+                Instantiate(itemToSpawn, returnMousePositionOnWorldPosition(), Quaternion.identity, itemParent);
+            }           
 
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            itemToSpawn = null;
+            itemIconSprite.sprite = null;
         }
     }
 

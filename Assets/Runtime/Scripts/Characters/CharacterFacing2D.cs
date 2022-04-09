@@ -31,32 +31,25 @@ public class CharacterFacing2D : MonoBehaviour
         {
             oldXpos = transform.position.x;
             isFacingRight = true;
-
         }
         else if (transform.position.x < oldXpos)
         {
             oldXpos = transform.position.x;
             isFacingRight = false;
         }
-
     }
     private void SpriteFlipDiretion()
     {
-
         if (isFacingRight)
         {
             fishSprite.flipX = true;
-
             //makes the mouth position be positive
             fishMouthPos.x = Mathf.Abs(fishMouthPos.x);
             fishMouth.transform.localPosition = fishMouthPos;
         }
-
-
         if (!isFacingRight)
         {
             fishSprite.flipX = false;
-
             //makes the mouth position be negative
             if (fishMouthPos.x > 0)
             {
@@ -66,7 +59,6 @@ public class CharacterFacing2D : MonoBehaviour
             {
                 fishMouth.transform.localPosition = fishMouthPos;
             }
-
         }
     }
 }

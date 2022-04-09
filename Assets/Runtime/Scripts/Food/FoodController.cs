@@ -47,9 +47,10 @@ public class FoodController : MonoBehaviour
                 if (activeFoodPrefabList.Count != stage.foodPositions.Length)
                 {
                     for (int i = 0; i < stage.foodPositions.Length; i++)
-                    {
+                    {                        
                         GameObject food = inactiveFoodPrefabList[i];
-                        food.transform.localPosition = stage.foodPositions[i];
+                        
+                        food.transform.localPosition = stage.foodPositions[i];                         
                         food.SetActive(true);
                         activeFoodPrefabList.Add(food);
                         

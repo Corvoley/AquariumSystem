@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FishCollision : MonoBehaviour
 {
-    private FishAI fishAI;
+    private FishController fishAI;
     private HungerSystem hungerSystem;
     private void Awake()
     {
-        fishAI = GetComponent<FishAI>();
+        fishAI = GetComponent<FishController>();
         hungerSystem = GetComponent<HungerSystem>();
 
     }

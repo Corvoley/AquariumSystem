@@ -5,7 +5,7 @@ using UnityEngine;
 
 public struct FishCollisionInfo
 {
-    public FishAI FishAI;
+    public FishController FishAI;
     public HungerSystem HungerSystem;
     public Collider2D Collider2D;
 

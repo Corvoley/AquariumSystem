@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 2053207219}
   - component: {fileID: 849479850}
   - component: {fileID: -8917057867173458}
+  - component: {fileID: 9185126522280757790}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Fish
@@ -181,7 +182,6 @@ MonoBehaviour:
   maxTimeToMove: 5
   foodSearchRadius: 12
   startChaseTime: 0
-  fishParameters: {fileID: 11400000, guid: cc138951ba3610a4b8bbdbef959d5112, type: 2}
 --- !u!114 &203694271182203037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,3 +268,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oxygenAmount: 2
+--- !u!114 &9185126522280757790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426357260388553437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecaef8eb99aa2e42ae2ecc5e54aaeb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAmount: 0
+  healthMax: 5
+  canRegen: 0

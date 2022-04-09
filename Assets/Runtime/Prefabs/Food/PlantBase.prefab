@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 6.76, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5049342895878443945
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5049342895878443944}
   - component: {fileID: 5049342895878443947}
   m_Layer: 0
-  m_Name: FoodBase
+  m_Name: PlantBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,46 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e155eeb04a50c6045ac42ae1d000ede7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialFoodAmount: 5
+  foodParameters: {fileID: 0}
   currentFoodAmount: 0
-  maxFoodAmount: 30
-  firstStageFoods:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  secondStageFoods:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  thirdStageFoods:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fourthStageFoods:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fifthStageFoods:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  currentSprite: {fileID: 0}
-  firstStageSprite: {fileID: 21300000, guid: 9050934e48277bb43b1982d3b1230840, type: 3}
-  secondStageSprite: {fileID: 21300000, guid: 0ade2ef6cdbfe824387a92d8289d1fb8, type: 3}
-  thirdStageSprite: {fileID: 21300000, guid: 2620606be27cdba43ac71730f6a8e3f8, type: 3}
-  fouthStageSprite: {fileID: 21300000, guid: 6fb164e24edc95e43a4cd115de3e33f8, type: 3}
-  fifthStageSprite: {fileID: 21300000, guid: ce73559aa6a5aec4aa0729239fbdf548, type: 3}
+  currentSprite: {fileID: 7842160964945390971}
   timeToEnableFood: 2
+  inactiveFoodPrefabList: []
+  activeFoodPrefabList: []
