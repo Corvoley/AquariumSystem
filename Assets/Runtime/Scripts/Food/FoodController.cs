@@ -97,6 +97,10 @@ public class FoodController : MonoBehaviour
     public void ReduceFoodAmount(float amount)
     {
         currentFoodAmount -= amount;
+        if (currentFoodAmount <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     private void EnableFood(List<GameObject> foods)
     {

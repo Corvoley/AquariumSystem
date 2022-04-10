@@ -14,12 +14,14 @@ public class FishController : MonoBehaviour
     }
 
     [Header("Movement Parameters")]
-    [SerializeField] private SpriteRenderer allowedMoveSprite;
+    
     [SerializeField] private Vector2 minDistMove, maxDistMove;
     [SerializeField] private float minTimeToMove = 1f;
     [SerializeField] private float maxTimeToMove = 10f;
     [SerializeField] private float foodSearchRadius = 10;
     private OxygenSystem oxygenSystem;
+    private SpriteRenderer allowedMoveSprite;
+
 
     private Health health;
     private SpriteRenderer fishSprite;
@@ -49,6 +51,7 @@ public class FishController : MonoBehaviour
         movement = GetComponent<MovementController>();
         vision = GetComponent<VisionComponent>();
         fishSprite = GetComponent<SpriteRenderer>();
+        allowedMoveSprite = FindObjectOfType<AquariumController>().GetComponentInChildren<SpriteRenderer>();
         health.OnDied += OnFishDied;
 
         StateAI = State.Roaming;
@@ -141,14 +144,15 @@ public class FishController : MonoBehaviour
     }
     private void Roaming()
     {
-        if (!allowedMoveSprite.bounds.Contains(roamPosition))
-        {
-            roamPosition = GetRoamingPos(minDistMove.x, minDistMove.y, maxDistMove.x, maxDistMove.y);
-        }
-        else
+        if (allowedMoveSprite.bounds.Contains(roamPosition))
         {
             movement.MoveToPosition(roamPosition, movement.MoveSpeed, timeFromLastMove, LerpType.Fast);
             startPosition = transform.position;
+        }
+        else
+        {
+            roamPosition = GetRoamingPos(minDistMove.x, minDistMove.y, maxDistMove.x, maxDistMove.y);
+            
         }
         timer -= Time.deltaTime;
         if (timer <= 0)
